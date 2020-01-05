@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    关于 | Hill
+    添加“在此处打开windows Terminal”到右键菜单 | Hill
 </title>
 <link rel="shortcut icon" href="https://lemonnonioi.github.io/favicon.ico?v=1578196331023">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,31 +99,56 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            关于
+                            添加“在此处打开windows Terminal”到右键菜单
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-01-25</time>
+                            <time class="post-time">2020-01-05</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+                                    <h1 id="添加在此处打开windows-terminal到右键菜单">添加“在此处打开windows Terminal”到右键菜单</h1>
+<p>win7系统中，在某文件夹中按住shift+右键，可以看到“在此处打开cmd”，这个功能在win10中变成了“在此处打开powershell”。</p>
+<p>微软在win10推出自家的高颜值命令行工具windows Terminal后，我便主要使用该工具进行命令行的操作，但是由于没有上述的在文件夹中打开的快捷方式，一直苦于路径的切换。终于，参考了Terminal官方github的issues，摸索出了添加“在此处打开windows Terminal”到右键菜单的方法。</p>
+<h2 id="step-1">Step 1</h2>
+<p>查看文档路径：</p>
+<pre><code>echo %USERPROFILE%
+echo %LOCALAPPDATA%
+</code></pre>
+<p>一般情况下，结果如下（[username]为用户名）：</p>
+<pre><code>C:\Users\[username]
+C:\Users\[username]\AppData\Local
+</code></pre>
+<h2 id="step-2">Step 2</h2>
+<p>在cmd中运行以下命令，新建一个文件夹用于存放图标：</p>
+<pre><code>mkdir %LOCALAPPDATA%\terminal
+</code></pre>
+<h2 id="step-3">Step 3</h2>
+<p>下载图标<code>wt_32.ico</code>并放到上述文件夹下</p>
+<p>下载路径：<a href="https://github.com/yanglr/WindowsDevTools/tree/master/awosometerminal/icons">https://github.com/yanglr/WindowsDevTools/tree/master/awosometerminal/icons</a></p>
+<h2 id="step-4">Step 4</h2>
+<p>复制以下文本，保存为<code>wt.reg</code>，然后以管理员身份运行（注意修改[username]为自己的用户名）</p>
+<pre><code>Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]
+@=&quot;Windows terminal here&quot;
+&quot;Icon&quot;=&quot;C:\\sers\\[username]\\AppData\\Local\\terminal\\wt_32.ico&quot;
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]
+@=&quot;C:\\Users\\[username]\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe&quot;
+</code></pre>
+<h2 id="step-5">Step 5</h2>
+<p>打开Terminal，修改<code>profile.json</code>，在cmd的配置中添加以下配置：</p>
+<pre><code>&quot;satrtingDirectory&quot;: &quot;1&quot;
+</code></pre>
+<h2 id="效果">效果</h2>
+<p>完成，桌面右键菜单效果如下：<br>
+<img src="https://lemonnonioi.github.io/post-images/1578196315799.png" alt="" loading="lazy"><br>
+<img src="https://lemonnonioi.github.io/post-images/1578196320901.png" alt="" loading="lazy"></p>
+<h2 id="参考">参考</h2>
+<blockquote>
+<p>https://github.com/microsoft/terminal/issues/1060</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>使用github pages + gridea部署</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>蒋山山</p>
-<ul>
-<li>2019.06 浙江大学信息电子工程学院本科毕业</li>
-<li>现任TP-LINK系统测试工程师</li>
-</ul>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<ul>
-<li>DOTA2</li>
-</ul>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>Jagger933@163.com</p>
 
                                 </div>
                     </article>
@@ -143,12 +168,15 @@
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
             <ul class="markdownIt-TOC">
-<li>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E5%9C%A8%E6%AD%A4%E5%A4%84%E6%89%93%E5%BC%80windows-terminal%E5%88%B0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95">添加“在此处打开windows Terminal”到右键菜单</a>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#step-1">Step 1</a></li>
+<li><a href="#step-2">Step 2</a></li>
+<li><a href="#step-3">Step 3</a></li>
+<li><a href="#step-4">Step 4</a></li>
+<li><a href="#step-5">Step 5</a></li>
+<li><a href="#%E6%95%88%E6%9E%9C">效果</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
 </ul>
 </li>
 </ul>

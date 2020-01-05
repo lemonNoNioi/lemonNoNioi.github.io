@@ -7,7 +7,7 @@
 <title>
     Hill
 </title>
-<link rel="shortcut icon" href="https://lemonnonioi.github.io/favicon.ico?v=1578188954259">
+<link rel="shortcut icon" href="https://lemonnonioi.github.io/favicon.ico?v=1578196331023">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://lemonnonioi.github.io">
-                <img class="avatar" src="https://lemonnonioi.github.io/images/avatar.png?v=1578188954259" alt="">
+                <img class="avatar" src="https://lemonnonioi.github.io/images/avatar.png?v=1578196331023" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,71 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://lemonnonioi.github.io/post/tian-jia-zai-ci-chu-da-kai-windows-terminaldao-you-jian-cai-dan">
+                        添加“在此处打开windows Terminal”到右键菜单
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-05</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            添加“在此处打开windows Terminal”到右键菜单
+win7系统中，在某文件夹中按住shift+右键，可以看到“在此处打开cmd”，这个功能在win10中变成了“在此处打开powershell”。
+微软在win10推出自家的高颜值命令行工具windows Terminal后，我便主要使用该工具进行命令行的操作，但是由于没有上述的在文件夹中打开的快捷方式，一直苦于路径的切换。终于，参考了Terminal官方github的issues，摸索出了添加“在此处打开windows Terminal”到右键菜单的方法。
+Step 1
+查看文档路径：
+echo %USERPROFILE%
+echo %LOCALAPPDATA%
+
+一般情况下，结果如下（[username]为用户名）：
+C:\Users\[username]
+C:\Users\[username]\AppData\Local
+
+Step 2
+在cmd中运行以下命令，新建一个文件夹用于存放图标：
+mkdir %LOCALAPPDATA%\terminal
+
+Step 3
+下载图标wt_32.ico并放到上述文件夹下
+下载路径：https://github.com/yanglr/WindowsDevTools/tree/master/awosometerminal/icons
+Step 4
+复制以下文本，保存为wt.reg，然后以管理员身份运行（注意修改[username]为自己的用户名）
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]
+@=&amp;quot;Windows terminal here&amp;quot;
+&amp;quot;Icon&amp;quot;=&amp;quot;C:\\sers\\[username]\\AppData\\Local\\terminal\\wt_32.ico&amp;quot;
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]
+@=&amp;quot;C:\\Users\\[username]\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe&amp;quot;
+
+Step 5
+打开Terminal，修改profile.json，在cmd的配置中添加以下配置：
+&amp;quot;satrtingDirectory&amp;quot;: &amp;quot;1&amp;quot;
+
+效果
+完成，桌面右键菜单效果如下：
+
+
+参考
+
+https://github.com/microsoft/terminal/issues/1060
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://lemonnonioi.github.io/post/tian-jia-zai-ci-chu-da-kai-windows-terminaldao-you-jian-cai-dan">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
                 <!-- 翻页 -->
                 
                 </div>
@@ -108,7 +173,7 @@
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://lemonnonioi.github.io/images/avatar.png?v=1578188954259)">
+        <div class="id_card-avatar" style="background-image: url(https://lemonnonioi.github.io/images/avatar.png?v=1578196331023)">
         </div>
         <h1 class="id_card-title">
             Hill

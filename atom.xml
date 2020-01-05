@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lemonnonioi.github.io</id>
     <title>Hill</title>
-    <updated>2020-01-05T01:49:15.859Z</updated>
+    <updated>2020-01-05T03:52:13.656Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lemonnonioi.github.io"/>
     <link rel="self" href="https://lemonnonioi.github.io/atom.xml"/>
@@ -10,4 +10,54 @@
     <logo>https://lemonnonioi.github.io/images/avatar.png</logo>
     <icon>https://lemonnonioi.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Hill</rights>
+    <entry>
+        <title type="html"><![CDATA[添加“在此处打开windows Terminal”到右键菜单]]></title>
+        <id>https://lemonnonioi.github.io/post/tian-jia-zai-ci-chu-da-kai-windows-terminaldao-you-jian-cai-dan</id>
+        <link href="https://lemonnonioi.github.io/post/tian-jia-zai-ci-chu-da-kai-windows-terminaldao-you-jian-cai-dan">
+        </link>
+        <updated>2020-01-05T03:49:21.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="添加在此处打开windows-terminal到右键菜单">添加“在此处打开windows Terminal”到右键菜单</h1>
+<p>win7系统中，在某文件夹中按住shift+右键，可以看到“在此处打开cmd”，这个功能在win10中变成了“在此处打开powershell”。</p>
+<p>微软在win10推出自家的高颜值命令行工具windows Terminal后，我便主要使用该工具进行命令行的操作，但是由于没有上述的在文件夹中打开的快捷方式，一直苦于路径的切换。终于，参考了Terminal官方github的issues，摸索出了添加“在此处打开windows Terminal”到右键菜单的方法。</p>
+<h2 id="step-1">Step 1</h2>
+<p>查看文档路径：</p>
+<pre><code>echo %USERPROFILE%
+echo %LOCALAPPDATA%
+</code></pre>
+<p>一般情况下，结果如下（[username]为用户名）：</p>
+<pre><code>C:\Users\[username]
+C:\Users\[username]\AppData\Local
+</code></pre>
+<h2 id="step-2">Step 2</h2>
+<p>在cmd中运行以下命令，新建一个文件夹用于存放图标：</p>
+<pre><code>mkdir %LOCALAPPDATA%\terminal
+</code></pre>
+<h2 id="step-3">Step 3</h2>
+<p>下载图标<code>wt_32.ico</code>并放到上述文件夹下</p>
+<p>下载路径：<a href="https://github.com/yanglr/WindowsDevTools/tree/master/awosometerminal/icons">https://github.com/yanglr/WindowsDevTools/tree/master/awosometerminal/icons</a></p>
+<h2 id="step-4">Step 4</h2>
+<p>复制以下文本，保存为<code>wt.reg</code>，然后以管理员身份运行（注意修改[username]为自己的用户名）</p>
+<pre><code>Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]
+@=&quot;Windows terminal here&quot;
+&quot;Icon&quot;=&quot;C:\\sers\\[username]\\AppData\\Local\\terminal\\wt_32.ico&quot;
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]
+@=&quot;C:\\Users\\[username]\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe&quot;
+</code></pre>
+<h2 id="step-5">Step 5</h2>
+<p>打开Terminal，修改<code>profile.json</code>，在cmd的配置中添加以下配置：</p>
+<pre><code>&quot;satrtingDirectory&quot;: &quot;1&quot;
+</code></pre>
+<h2 id="效果">效果</h2>
+<p>完成，桌面右键菜单效果如下：<br>
+<img src="https://lemonnonioi.github.io/post-images/1578196315799.png" alt="" loading="lazy"><br>
+<img src="https://lemonnonioi.github.io/post-images/1578196320901.png" alt="" loading="lazy"></p>
+<h2 id="参考">参考</h2>
+<blockquote>
+<p>https://github.com/microsoft/terminal/issues/1060</p>
+</blockquote>
+]]></content>
+    </entry>
 </feed>
