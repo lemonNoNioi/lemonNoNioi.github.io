@@ -1,235 +1,138 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    technique | Hill
-</title>
-<link rel="shortcut icon" href="https://lemonnonioi.github.io/favicon.ico?v=1578196472640">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<title>technique | Hill</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://lemonnonioi.github.io/favicon.ico?v=1578196540723">
 <link rel="stylesheet" href="https://lemonnonioi.github.io/styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://lemonnonioi.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-</head>
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://lemonnonioi.github.io">
-                <img class="avatar" src="https://lemonnonioi.github.io/images/avatar.png?v=1578196472640" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    Hill
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="Better to run than curse the road">
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://lemonnonioi.github.io">
+        <img src="https://lemonnonioi.github.io/images/avatar.png?v=1578196540723" class="site-logo">
+        <h1 class="site-title">Hill</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-</div>
-
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
-
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        technique</b>
-    </div>
-    
+    <div>
+      
         
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://lemonnonioi.github.io/post/windows-terminal-right-click-menu">
-                        添加“在此处打开windows Terminal”到右键菜单
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-05</time>
-                    
-                        <a href="https://lemonnonioi.github.io/tag/technique" class="post-tag i-tag
-                            i-tag-error">
-            #technique
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            添加“在此处打开windows Terminal”到右键菜单
-win7系统中，在某文件夹中按住shift+右键，可以看到“在此处打开cmd”，这个功能在win10中变成了“在此处打开powershell”。
-微软在win10推出自家的高颜值命令行工具windows Terminal后，我便主要使用该工具进行命令行的操作，但是由于没有上述的在文件夹中打开的快捷方式，一直苦于路径的切换。终于，参考了Terminal官方github的issues，摸索出了添加“在此处打开windows Terminal”到右键菜单的方法。
-Step 1
-查看文档路径：
-echo %USERPROFILE%
-echo %LOCALAPPDATA%
-
-一般情况下，结果如下（[username]为用户名）：
-C:\Users\[username]
-C:\Users\[username]\AppData\Local
-
-Step 2
-在cmd中运行以下命令，新建一个文件夹用于存放图标：
-mkdir %LOCALAPPDATA%\terminal
-
-Step 3
-下载图标wt_32.ico并放到上述文件夹下
-下载路径：https://github.com/yanglr/WindowsDevTools/tree/master/awosometerminal/icons
-Step 4
-复制以下文本，保存为wt.reg，然后以管理员身份运行（注意修改[username]为自己的用户名）
-Windows Registry Editor Version 5.00
-
-[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]
-@=&amp;quot;Windows terminal here&amp;quot;
-&amp;quot;Icon&amp;quot;=&amp;quot;C:\\sers\\[username]\\AppData\\Local\\terminal\\wt_32.ico&amp;quot;
-
-[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]
-@=&amp;quot;C:\\Users\\[username]\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe&amp;quot;
-
-Step 5
-打开Terminal，修改profile.json，在cmd的配置中添加以下配置：
-&amp;quot;satrtingDirectory&amp;quot;: &amp;quot;1&amp;quot;
-
-效果
-完成，桌面右键菜单效果如下：
-
-
-参考
-
-https://github.com/microsoft/terminal/issues/1060
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://lemonnonioi.github.io/post/windows-terminal-right-click-menu">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://lemonnonioi.github.io/images/avatar.png?v=1578196472640)">
-        </div>
-        <h1 class="id_card-title">
-            Hill
-        </h1>
-        <h2 class="id_card-description">
-            Better to run than curse the road
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-
-        </div>
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
     </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://lemonnonioi.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Better to run than curse the road
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://lemonnonioi.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: technique</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://lemonnonioi.github.io/post/windows-terminal-right-click-menu">
+                  <h2 class="post-title">添加“在此处打开windows Terminal”到右键菜单</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-05
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+
+
+
+
+  </body>
 </html>
